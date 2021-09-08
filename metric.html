@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://cjunnr3iw7.execute-api.ap-south-1.amazonaws.com/prod/data',
+
+                    success: function(data){
+                        $('#myunipolapi').html('');
+
+                        const x = Object.keys(data['body']);
+                        const y = Object.values(data['body']);
+
+                        // data.Items.forEach(function(item){
+                        //     $('#myunipolapi').append(
+                        //                '<tr id="TT"><td id="TT">' + x[i] + '</td> <td id="TT">' + y[i] '</td></tr>' 
+                        //     );
+                        // })
+
+                        for(var i=0; i<x.length; i++){
+                        	 $('#myunipolapi').append(
+                                       '<tr id="TT"><td id="TT">' + x[i] + '</td> <td id="TT">' + y[i] '</td></tr>' 
+                            );
+                        }
+                    }
+                });
+            });
+	</script>
+</head>
+
+<body>
+
+	<h3> Validation Stats </h3>
+
+	<table id='table' style="width:50%" border="1">
+                <thead>
+                    <tr>
+                        <th>Validation Status</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody id="myunipolapi">
+                </tbody>
+    </table>
+
+</body>
+</html>
+
+
